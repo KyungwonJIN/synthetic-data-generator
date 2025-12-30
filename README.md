@@ -57,14 +57,34 @@ pip install rembg
 
 ### 1. 합성 데이터 생성
 
+#### GUI 모드 (추천)
 ```bash
 python scripts/synthetic_generator.py
 ```
+실행하면 폴더 선택 다이얼로그가 나타납니다:
+1. Contour 이미지 폴더 선택
+2. 배경 이미지 폴더 선택
+3. 결과 저장 폴더 선택
 
-**설정**:
-- `root_path`: 데이터셋 루트 경로
-- `save_path`: 결과 저장 경로
-- `class_list`: 클래스 목록 (예: ['Camera', 'Phone'])
+#### 명령줄 모드
+```bash
+python scripts/synthetic_generator.py \
+    --contour-folder ./dataset/contour_image \
+    --background-folder ./dataset/office_background \
+    --output-folder ./dataset/save_img \
+    --classes Camera Phone \
+    --batch-size 5 \
+    --skip-count 0
+```
+
+**옵션**:
+- `--contour-folder`: Contour 이미지가 있는 폴더 경로
+- `--background-folder`: 배경 이미지가 있는 폴더 경로
+- `--output-folder`: 결과를 저장할 폴더 경로
+- `--classes`: 클래스 목록 (예: Camera Phone)
+- `--batch-size`: 배경 이미지당 사용할 contour 이미지 개수 (기본값: 5)
+- `--skip-count`: 처음 몇 개의 배경 이미지를 건너뛸지 (기본값: 0)
+- `--no-gui`: GUI 다이얼로그를 사용하지 않음
 
 ### 2. 배경 이미지 리사이즈
 
